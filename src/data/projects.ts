@@ -1,3 +1,6 @@
+import poolMockup from '../assets/projects/pool-mockup.png';
+import luxoraMockup from '../assets/projects/luxora-mockup.png';
+
 // Central project data — single source of truth
 export const PROJECTS = [
   {
@@ -7,7 +10,7 @@ export const PROJECTS = [
     year: '2024',
     github: 'https://github.com/esratjahanesha808-arch/pool-builder.git',
     live: 'https://oasis-pools-builder.netlify.app',
-    image: '/src/assets/projects/pool-mockup.png',
+    image: poolMockup,
     tech: ['HTML5', 'Vanilla JavaScript', 'Tailwind CSS v4', 'Node.js', 'Netlify'],
     summary:
       'Conducted competitive UX/UI analysis across top-ranking luxury pool builder websites in the UK and Austin markets; engineered the layout to solve common friction points and low conversion patterns found in lower-ranked competitor sites.',
@@ -27,7 +30,7 @@ export const PROJECTS = [
     year: '2024',
     github: 'https://github.com/esratjahanesha808-arch/perfume-e-commerce-store.git',
     live: 'https://luxora-esha707.vercel.app',
-    image: '/src/assets/projects/luxora-mockup.png',
+    image: luxoraMockup,
     tech: ['Next.js 16', 'React 19', 'TypeScript 5', 'PostgreSQL', 'Prisma ORM', 'Auth.js', 'Stripe', 'Tailwind CSS v4', 'Zustand', 'Recharts'],
     summary:
       'Engineered a full-stack e-commerce monolith using Next.js 16 (App Router), React 19, and TypeScript 5, isolating core business logic into a dedicated, decoupled service layer.',
