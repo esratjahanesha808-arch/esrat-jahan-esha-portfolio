@@ -22,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# AI and reference files
+.agents/
+AGENT.md
+CLAUDE.md
+START_HERE.md
+READEME.md
+docs/
+frontend-design.md
+references/
+screenshot.mjs
+serve.mjs
+assets/
