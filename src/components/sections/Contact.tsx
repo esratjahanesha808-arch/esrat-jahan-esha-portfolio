@@ -8,14 +8,35 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = () => {
-    // Allow native form submission to happen (to formsubmit.co in a new tab)
-    // We just update the UI to show success
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
+    
+    const formData = new FormData(e.currentTarget);
+    const object = Object.fromEntries(formData.entries());
+    object.access_key = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(object)
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setIsSuccess(true);
+      } else {
+        console.error('Web3Forms submission failed:', result);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-    }, 1500);
+    }
   };
 
   return (
@@ -112,9 +133,8 @@ const Contact: React.FC = () => {
               <p style={{ color: 'rgba(245,245,244,0.5)', fontFamily: 'Inter, sans-serif' }}>Thank you for reaching out. I'll get back to you shortly.</p>
             </div>
           ) : (
-            <form action="https://api.web3forms.com/submit" method="POST" target="_blank" onSubmit={handleSubmit} className="flex flex-col gap-6">
-              {/* Web3Forms Access Key from environment variables */}
-              <input type="hidden" name="access_key" value={import.meta.env.VITE_WEB3FORMS_ACCESS_KEY} />
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+              {/* Web3Forms Access Key is now handled in the fetch request */}
               <input type="hidden" name="subject" value="New contact form submission from your Portfolio" />
               <div className="flex flex-col gap-2">
                 <label htmlFor="name" className="text-[11px] uppercase tracking-wider font-medium" style={{ color: 'rgba(245,245,244,0.4)', fontFamily: 'Inter, sans-serif' }}>Name</label>
