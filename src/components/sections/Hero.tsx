@@ -18,10 +18,6 @@ const Typewriter: React.FC<{ texts: string[]; reduced: boolean }> = ({ texts, re
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    if (reduced) {
-      setDisplay(texts[0]);
-      return;
-    }
     const full = texts[index];
     const speed = deleting ? 55 : 115;
 
@@ -56,13 +52,11 @@ const Typewriter: React.FC<{ texts: string[]; reduced: boolean }> = ({ texts, re
       >
         {display}
       </em>
-      {!reduced && (
-        <span
-          className="inline-block w-[2px] h-[0.8em] ml-0.5 align-middle"
-          style={{ background: '#b8965a', opacity: 0.9, animation: 'pulse 1.1s ease-in-out infinite' }}
-          aria-hidden="true"
-        />
-      )}
+      <span
+        className="inline-block w-[2px] h-[0.8em] ml-0.5 align-middle"
+        style={{ background: '#b8965a', opacity: 0.9, animation: 'pulse 1.1s ease-in-out infinite' }}
+        aria-hidden="true"
+      />
     </span>
   );
 };

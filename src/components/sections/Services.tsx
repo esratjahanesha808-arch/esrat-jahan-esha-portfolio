@@ -51,7 +51,7 @@ const Services: React.FC = () => {
               color: '#f5f5f4',
             }}
           >
-            Our Services
+            My Services
           </motion.h2>
 
           <motion.p
@@ -61,7 +61,7 @@ const Services: React.FC = () => {
             className="text-base md:text-lg max-w-2xl leading-relaxed"
             style={{ color: 'rgba(245,245,244,0.6)', fontFamily: 'Inter, sans-serif' }}
           >
-            Tailored Solutions for Your Success, Elevate Your Experience with Our Exceptional and Comprehensive Services Today
+            Tailored Solutions for Your Success, Elevate Your Experience with My Exceptional and Comprehensive Services Today
           </motion.p>
         </div>
 

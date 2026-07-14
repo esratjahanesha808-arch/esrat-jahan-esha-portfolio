@@ -1,5 +1,5 @@
-import poolMockup from '../assets/projects/pool-mockup.png';
-import luxoraMockup from '../assets/projects/luxora-mockup.png';
+import poolMockup from '../assets/projects/luxora-mockup-new2.png';
+import luxoraMockup from '../assets/projects/pool-mockup-new.png';
 
 // Central project data — single source of truth
 export const PROJECTS = [

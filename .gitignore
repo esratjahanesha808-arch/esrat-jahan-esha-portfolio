@@ -35,3 +35,4 @@ references/
 screenshot.mjs
 serve.mjs
 assets/
+.env

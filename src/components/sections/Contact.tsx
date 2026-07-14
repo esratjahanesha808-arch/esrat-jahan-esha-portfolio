@@ -8,10 +8,10 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Allow native form submission to happen (to formsubmit.co in a new tab)
+    // We just update the UI to show success
     setIsSubmitting(true);
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
@@ -112,12 +112,16 @@ const Contact: React.FC = () => {
               <p style={{ color: 'rgba(245,245,244,0.5)', fontFamily: 'Inter, sans-serif' }}>Thank you for reaching out. I'll get back to you shortly.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+            <form action="https://api.web3forms.com/submit" method="POST" target="_blank" onSubmit={handleSubmit} className="flex flex-col gap-6">
+              {/* Web3Forms Access Key from environment variables */}
+              <input type="hidden" name="access_key" value={import.meta.env.VITE_WEB3FORMS_ACCESS_KEY} />
+              <input type="hidden" name="subject" value="New contact form submission from your Portfolio" />
               <div className="flex flex-col gap-2">
                 <label htmlFor="name" className="text-[11px] uppercase tracking-wider font-medium" style={{ color: 'rgba(245,245,244,0.4)', fontFamily: 'Inter, sans-serif' }}>Name</label>
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   required
                   className="w-full px-5 py-4 rounded-xl bg-transparent border outline-none transition-all duration-300 focus:border-[rgba(184,150,90,0.5)] focus:bg-[rgba(255,255,255,0.02)]"
                   style={{ borderColor: 'rgba(255,255,255,0.1)', color: '#f5f5f4', fontFamily: 'Inter, sans-serif' }}
@@ -129,6 +133,7 @@ const Contact: React.FC = () => {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   required
                   className="w-full px-5 py-4 rounded-xl bg-transparent border outline-none transition-all duration-300 focus:border-[rgba(184,150,90,0.5)] focus:bg-[rgba(255,255,255,0.02)]"
                   style={{ borderColor: 'rgba(255,255,255,0.1)', color: '#f5f5f4', fontFamily: 'Inter, sans-serif' }}
@@ -139,6 +144,7 @@ const Contact: React.FC = () => {
                 <label htmlFor="message" className="text-[11px] uppercase tracking-wider font-medium" style={{ color: 'rgba(245,245,244,0.4)', fontFamily: 'Inter, sans-serif' }}>Message</label>
                 <textarea
                   id="message"
+                  name="message"
                   required
                   rows={4}
                   className="w-full px-5 py-4 rounded-xl bg-transparent border outline-none transition-all duration-300 focus:border-[rgba(184,150,90,0.5)] focus:bg-[rgba(255,255,255,0.02)] resize-none"
