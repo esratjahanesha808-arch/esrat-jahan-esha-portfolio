@@ -8,7 +8,7 @@ const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = () => {
     // Allow native form submission to happen (to formsubmit.co in a new tab)
     // We just update the UI to show success
     setIsSubmitting(true);
